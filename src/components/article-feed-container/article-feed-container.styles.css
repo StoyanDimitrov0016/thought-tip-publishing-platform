@@ -1,0 +1,24 @@
+.articles-feed {
+    flex: 1 1 auto;
+    overflow: scroll;
+    max-height: 80vh;
+    background-color: var(--background-surface);
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--background-surface-dark) var(--background-surface-light);
+}
+
+.articles-feed::-webkit-scrollbar {
+    width: 8px;
+}
+
+.articles-feed::-webkit-scrollbar-track {
+    background: var(--background-surface-light);
+}
+
+.articles-feed::-webkit-scrollbar-thumb {
+    background-color: var(--background-surface-dark);
+    border-radius: 4px;
+}

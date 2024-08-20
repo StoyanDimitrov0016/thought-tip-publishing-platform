@@ -1,0 +1,76 @@
+.sidebar {
+    background-color: var(--background-secondary);
+    padding: 1em;
+    /* box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); */
+    width: 250px;
+}
+
+.sidebar-title {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: var(--text-primary);
+}
+
+.sidebar-home-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.sidebar-home-logo {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+}
+
+.sidebar-home-text {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.sidebar-home-link:hover {
+    color: var(--text-accent);
+}
+
+.sidebar-section {
+    margin-bottom: 1.5em;
+}
+
+.sidebar-details {
+    background-color: var(--background-surface-light);
+    border: 1px solid var(--background-surface-dark);
+    border-radius: 0.25em;
+    padding: 0.5em;
+}
+
+.sidebar-summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.sidebar-summary:hover {
+    color: var(--text-accent);
+}
+
+.sidebar-list {
+    list-style: none;
+    padding-left: 1em;
+    margin-top: 0.5em;
+}
+
+.sidebar-list-item {
+    margin-bottom: 0.75em;
+}
+
+.sidebar-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 1em;
+}
+
+.sidebar-link:hover {
+    color: var(--text-accent);
+}

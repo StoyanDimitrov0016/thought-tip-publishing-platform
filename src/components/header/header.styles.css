@@ -1,0 +1,58 @@
+/* Header Container */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: var(--background-secondary);
+}
+
+/* Primary Navigation */
+.primary-navigation ul {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+/* Navigation Links */
+.primary-navigation a {
+    display: inline-flex;
+    /* Align icon and text horizontally */
+    align-items: center;
+    /* Vertically align icon and text */
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1em;
+    /* Adjust font size as needed */
+    transition: color 0.3s ease;
+    /* Smooth transition for hover state */
+}
+
+/* Icons within Navigation Links */
+.primary-navigation .icon {
+    width: 1.25em;
+    /* Adjust icon size */
+    height: 1.25em;
+    margin-right: 0.5em;
+    /* Space between icon and text */
+    fill: currentColor;
+    /* Inherit text color */
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+}
+
+/* Hover State for Navigation Links */
+.primary-navigation a:hover {
+    color: var(--text-accent);
+}
+
+/* Responsive Adjustment */
+@media (max-width: 768px) {
+    .primary-navigation ul {
+        gap: 1em;
+        /* Reduce gap on smaller screens */
+    }
+}

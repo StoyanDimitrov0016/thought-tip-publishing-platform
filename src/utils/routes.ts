@@ -1,8 +1,10 @@
 export const ROUTES = {
   HOME: "/",
   ARTICLE: "/articles/:articleId",
-  LOGIN: "/auth/login",
-  REGISTER: "/auth/register",
+  SIGN_IN: "/auth/sign-in",
+  SIGN_UP: "/auth/sign-up",
+  LOGOUT: "/auth/register",
+  AUTHOR: "/authors/:authorId",
   USER_NOTIFICATIONS: "/my-notifications",
   CREATE_ARTICLE: "/create-article",
   USER_PROFILE: "/my-profile",

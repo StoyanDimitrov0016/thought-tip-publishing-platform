@@ -7,8 +7,8 @@ import "./styles/reset.css";
 import "./styles/colors.css";
 import "./styles/utilities.css";
 
-import router from "./router.tsx";
-import { ROUTES } from "./utils/routes.ts";
+import router from "./router/router.tsx";
+import { ROUTES } from "./router/routes.ts";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 
 import { ROUTES } from "./routes";
 
@@ -40,29 +39,17 @@ const router = createBrowserRouter([
       // Restricted routes wrapped inside SignedIn component
       {
         path: ROUTES.CREATE_ARTICLE,
-        element: (
-          <SignedIn>
-            <CreateArticlePage />
-          </SignedIn>
-        ),
+        element: <CreateArticlePage />,
       },
       {
         path: ROUTES.USER_PROFILE,
-        element: (
-          <SignedIn>
-            <UserProfilePage />
-          </SignedIn>
-        ),
+        element: <UserProfilePage />,
         children: [],
       },
       {
         // Fallback for signed-out users trying to access restricted routes
         path: "*",
-        element: (
-          <SignedOut>
-            <RedirectToSignIn />
-          </SignedOut>
-        ),
+        element: <span>Redirect</span>,
       },
     ],
   },

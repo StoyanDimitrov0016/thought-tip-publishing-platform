@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface UseFormProps<T> {
   initialState: T;
-  onSubmitOperation: (formData: T) => void;
+  onSubmitOperation: (formData: T) => Promise<void>;
 }
 
 const useForm = <T,>({ initialState, onSubmitOperation }: UseFormProps<T>) => {
@@ -13,9 +13,9 @@ const useForm = <T,>({ initialState, onSubmitOperation }: UseFormProps<T>) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmitOperation(formData);
+    await onSubmitOperation(formData);
   };
 
   const resetValues = () => {

@@ -7,9 +7,9 @@ import HomePage from "../pages/home-page/HomePage";
 import ArticlePage from "../pages/article-page/ArticlePage";
 import AuthorPage from "../pages/author-page/AuthorPage";
 import CreateArticlePage from "../pages/create-article-page/CreateArticlePage";
-import SignInPage from "../pages/sign-in-page/SignInPage";
-import SignUpPage from "../pages/sign-up-page/SignUpPage";
 import UserProfilePage from "../pages/user-profile-page/UserProfilePage";
+import LoginPage from "../pages/login-page/LoginPage";
+import RegisterPage from "../pages/register-page/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -29,14 +29,14 @@ const router = createBrowserRouter([
         element: <AuthorPage />,
       },
       {
-        path: ROUTES.SIGN_IN,
-        element: <SignInPage />,
+        path: ROUTES.LOGIN,
+        element: <LoginPage />,
       },
       {
-        path: ROUTES.SIGN_UP,
-        element: <SignUpPage />,
+        path: ROUTES.REGISTER,
+        element: <RegisterPage />,
       },
-      // Restricted routes wrapped inside SignedIn component
+
       {
         path: ROUTES.CREATE_ARTICLE,
         element: <CreateArticlePage />,
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         children: [],
       },
       {
-        // Fallback for signed-out users trying to access restricted routes
+        // Fallback for logout-out users trying to access restricted routes
         path: "*",
         element: <span>Redirect</span>,
       },

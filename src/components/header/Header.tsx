@@ -59,13 +59,13 @@ const SignedOutNav = () => {
     <nav aria-label="Primary Navigation" className="primary-navigation">
       <ul>
         <li>
-          <Link to={ROUTES.SIGN_IN}>
-            <span> Sign in</span>
+          <Link to={ROUTES.LOGIN}>
+            <span>Login</span>
           </Link>
         </li>
         <li>
-          <Link to={ROUTES.SIGN_UP}>
-            <span> Sign up</span>
+          <Link to={ROUTES.REGISTER}>
+            <span>Register</span>
           </Link>
         </li>
       </ul>

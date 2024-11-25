@@ -1,0 +1,146 @@
+.article-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+}
+
+.thumbnail {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.author-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.author-link:hover {
+    text-decoration: underline;
+}
+
+.reading-time,
+.paywalled,
+.created-at,
+.updated-at {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+.hook {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    text-indent: 2em;
+    text-align: justify;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+.hook a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hook a:hover {
+    text-decoration: underline;
+}
+
+.segmentation {
+    font-size: 0.8rem;
+    display: flex;
+
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.3em 0.6em;
+    margin: 0.2em;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.category-badge {
+    background-color: #4335A7;
+
+}
+
+.topic-badge {
+    background-color: #80C4E9;
+
+}
+
+.tag-badge {
+    background-color: #FF7F3E;
+}
+
+.badge:hover {
+    background-color: #B59F78;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .hook {
+        text-indent: 1em;
+    }
+}

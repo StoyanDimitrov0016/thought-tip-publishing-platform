@@ -1,0 +1,112 @@
+/* Author Card */
+.author-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 16px;
+}
+
+/* Profile Picture */
+.picture {
+    flex-shrink: 0;
+}
+
+.profile-picture {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.125em solid #007bff;
+}
+
+
+/* Author Info */
+.info {
+    margin-left: 1em;
+}
+
+/* Link styles */
+.author-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.author-link:hover {
+    text-decoration: underline;
+}
+
+/* With First and Last Names */
+.author-names-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-full-name {
+    font-size: 1.8em;
+    /* Larger size for full name */
+    font-weight: bold;
+    margin: 0;
+}
+
+.author-username {
+    font-size: 1.2em;
+    /* Smaller size for username */
+    color: #555;
+    /* Secondary color */
+}
+
+/* Without First and Last Names */
+.author-username-large {
+    font-size: 1.2em;
+    /* Larger username size when full name is absent */
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Author Metadata */
+.author-meta {
+    margin: 0.5em 0;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.verification-level {
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+
+.author-joined {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Action Buttons */
+.action .button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.follow-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.follow-button:hover {
+    background-color: #218838;
+}
+
+.unfollow-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.unfollow-button:hover {
+    background-color: #c82333;
+}

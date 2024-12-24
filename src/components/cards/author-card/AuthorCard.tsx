@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import "./author-card.styles.css";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { followAuthor, unfollowAuthor } from "../../../api/author";
 
 interface AuthorCardProps {
   id: string;
   username: string;
-  verificationLevel: number;
+  verified: boolean;
   firstName: string | null;
   lastName: string | null;
   profilePicture: string | null;
@@ -13,24 +14,12 @@ interface AuthorCardProps {
   isFollowed: boolean;
 }
 
-const verificationLabels: { [key: number]: string } = {
-  0: "New Thinker",
-  2: "Established Thinker",
-  3: "Generous Thinker",
-};
-
-const verificationClasses: { [key: number]: string } = {
-  0: "new-thinker",
-  2: "established-thinker",
-  3: "generous-thinker",
-};
-
 import { useState } from "react";
 
 const AuthorCard = ({
   id,
   username,
-  verificationLevel,
+  verified,
   firstName,
   lastName,
   profilePicture,
@@ -77,7 +66,7 @@ const AuthorCard = ({
 
       <div className="info">
         <Link
-          to={`/authors/@${username}`}
+          to={`/authors/@${username}-${id}`}
           className="author-link"
           aria-label={`Visit ${
             firstName && lastName ? `${firstName} ${lastName}` : `@${username}`
@@ -94,9 +83,11 @@ const AuthorCard = ({
         </Link>
         <p className="author-meta">
           Status:
-          <span className={`verification-level ${verificationClasses[verificationLevel]}`}>
-            {verificationLabels[verificationLevel]}
-          </span>
+          {verified && (
+            <span className="badge verified-badge">
+              <RiVerifiedBadgeFill />
+            </span>
+          )}
         </p>
         <p className="author-joined">Thinker since {joinedDate}</p>
       </div>

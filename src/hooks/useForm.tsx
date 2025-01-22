@@ -1,28 +1,58 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-interface UseFormProps<T> {
-  initialState: T;
-  onSubmitOperation: (formData: T) => Promise<void>;
+type FormValues = Record<string, any>;
+type ChangeEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+type FormEvent = React.FormEvent<HTMLFormElement>;
+
+interface UseFormProps<T extends FormValues> {
+  initialValues: T;
+  onSubmit: (values: T) => Promise<void>;
+  validate?: (values: T) => Partial<Record<keyof T, string>>;
 }
 
-const useForm = <T,>({ initialState, onSubmitOperation }: UseFormProps<T>) => {
-  const [formData, setFormData] = useState<T>(initialState);
+export default function useForm<T extends FormValues>({
+  initialValues,
+  onSubmit,
+  validate,
+}: UseFormProps<T>) {
+  const [values, setValues] = useState<T>(initialValues);
+  const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const changeHandler = (event: ChangeEvent) => {
+    const { name, value: initialValue, type } = event.target;
+    const value = type === "checkbox" ? (event.target as HTMLInputElement).checked : initialValue;
+
+    setValues((prev) => ({ ...prev, [name]: value }));
+
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (event: FormEvent) => {
     event.preventDefault();
-    await onSubmitOperation(formData);
+
+    if (validate) {
+      const validationErrors = validate(values);
+      const hasValidationErrors = Object.keys(validationErrors).length > 0;
+
+      if (hasValidationErrors) {
+        setErrors(validationErrors);
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+    try {
+      await onSubmit(values);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const resetValues = () => {
-    setFormData(initialState);
+  const resetForm = () => {
+    setValues(initialValues);
+    setErrors({});
   };
 
-  return { formData, onChangeHandler, onSubmitHandler, resetValues };
-};
-
-export default useForm;
+  return { values, changeHandler, submitHandler, errors, isSubmitting, resetForm };
+}

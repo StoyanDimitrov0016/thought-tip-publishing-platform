@@ -1,138 +1,122 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import "./article-card.styles.css";
+import { Link } from "react-router-dom";
+import { IArticleAggregatedPreview } from "../../../types/entries/article";
+import { FaBookmark, FaLock, FaRegBookmark } from "react-icons/fa6";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { FaRegCommentAlt } from "react-icons/fa";
+import {
+  getAuthorPath,
+  getAvatarPath,
+  getArticlePath,
+  getThumbnailPath,
+} from "../../../utils/path";
+import { checkIsUpdated, getPublishedDate, parseReadingTimeDuration } from "../../../utils/time";
 
-interface IArticlePreviewEntry {
-  id: string;
-  title: string;
-  slug: string;
-  thumbnail: string;
-  hook: string;
-  author: {
-    id: string;
-    firstName: string;
-    lastName: string;
-    profilePicture: string;
-    userPartial: {
-      id: string;
-      username: string;
-      verificationLevel: number;
-    };
-  };
-  category: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  topics: {
-    id: string;
-    name: string;
-    slug: string;
-  }[];
-  tags: {
-    id: string;
-    name: string;
-    slug: string;
-  }[];
-  readingTime: number;
-  charge: number;
-  discussion: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+// TODO: Fix interface length
+type ArticlePreview = IArticleAggregatedPreview;
 
-interface ArticleCardProps {
-  article: IArticlePreviewEntry;
-}
+// Article Card Component:
+export default function ArticleCard({ article }: { article: ArticlePreview }) {
+  const { author, statistics, interactions } = article;
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const {
-    title,
-    slug,
-    thumbnail,
-    hook,
-    author,
-    category,
-    topics,
-    tags,
-    readingTime,
-    charge,
-    createdAt,
-    updatedAt,
-  } = article;
+  const authorPath = getAuthorPath(author.id);
+  const avatarPath = getAvatarPath(author.avatar);
 
-  const isUpdated = new Date(updatedAt).getTime() !== new Date(createdAt).getTime();
+  const articlePath = getArticlePath(article.id);
+  const thumbnailPath = getThumbnailPath(article.thumbnail);
+
+  const publishedDate = getPublishedDate(article.createdAt);
+  const isUpdated = checkIsUpdated(article.createdAt, article.updatedAt);
+  const readingTimeDuration = parseReadingTimeDuration(article.readingTime);
 
   return (
-    <div className="article-card">
-      {/* Thumbnail */}
-      <Link to={`/articles/@${author.userPartial.username}/${slug}`} className="thumbnail">
-        <img src={thumbnail} alt={title} />
-      </Link>
-
-      {/* Content */}
-      <div className="content">
-        {/* Meta Info */}
-        <div className="meta">
-          {/* Author */}
-          <div className="author">
-            <Link to={`/authors/${author.userPartial.username}`} className="author-link">
-              {author.firstName && author.lastName ? (
-                <span className="names">{`${author.firstName} ${author.lastName}`}</span>
-              ) : (
-                <span className="username">{`@${author.userPartial.username}`}</span>
-              )}
+    <article className="article-card">
+      {/* Header */}
+      <header className="article-header container">
+        <div className="author-wrapper">
+          <div className="avatar-container">
+            <Link to={authorPath}>
+              <img src={avatarPath} alt={`${author.username}'s profile pic`} />
             </Link>
           </div>
-
-          <span className="reading-time">{readingTime} min read</span>
-          {charge > 0 && <span className="paywalled">Paywalled</span>}
-          <span className="created-at">{new Date(createdAt).toLocaleDateString()}</span>
-          {isUpdated && (
-            <span className="updated-at">
-              Latest Revision: {new Date(updatedAt).toLocaleDateString()}
-            </span>
-          )}
+          <div className="credentials-wrapper">
+            <Link to={authorPath}>
+              <span className="username">@{author.username}</span>
+            </Link>
+            <Link to={authorPath}>
+              <span className="names">
+                {author.firstName} {author.lastName}
+              </span>
+            </Link>
+          </div>
         </div>
 
-        {/* Title */}
-        <h2 className="title">
-          <Link to={`/articles/@${author.userPartial.username}/${slug}`}>{title}</Link>
-        </h2>
-
-        {/* Hook */}
-        <p className="hook">
-          <Link to={`/articles/@${author.userPartial.username}/${slug}`}>{hook}</Link>
-        </p>
-
-        {/* Segmentation */}
-        <div className="segmentation">
-          {/* Category Badge */}
-          <div className="category">
-            <span className="badge category-badge">{category.name}</span>
+        <div className="meta-container">
+          <div className="meta-group">
+            <span>{isUpdated && "Updated"}</span>
           </div>
-
-          {/* Topic Badges */}
-          <div className="topics">
-            {topics.map((topic) => (
-              <span key={topic.id} className="badge topic-badge">
-                {topic.name}
-              </span>
-            ))}
+          <div className="meta-group">
+            <span>{readingTimeDuration}</span>
           </div>
+        </div>
+      </header>
 
-          {/* Tag Badges */}
-          <div className="tags">
-            {tags.map((tag) => (
-              <span key={tag.id} className="badge tag-badge">
-                #{tag.name}
-              </span>
-            ))}
-          </div>
+      {/* Main Content */}
+      <div className="article-content-container">
+        <div className="article-content-wrapper">
+          <main className="article-main-wrapper">
+            <Link to={articlePath}>
+              <h3>{article.title}</h3>
+              <p>{article.summary}</p>
+            </Link>
+          </main>
+          <aside className="thumbnail-wrapper">
+            <div className="thumbnail-container">
+              <Link to={articlePath}>
+                <img src={thumbnailPath} alt={article.title} />
+              </Link>
+            </div>
+          </aside>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default ArticleCard;
+      {/* Footer */}
+      <footer className="article-footer container">
+        <div className="footer-meta">
+          <div className="meta-group">{article.charge > 0 && <FaLock aria-hidden="true" />}</div>
+          <div className="meta-group">
+            <time dateTime={article.createdAt}>{publishedDate}</time>
+          </div>
+        </div>
+
+        <div className="action-container">
+          <div className="action-wrapper">
+            <div className="action-group">
+              <span>{statistics.commentsCount}</span>
+              <FaRegCommentAlt aria-hidden="true" />
+            </div>
+            <div className="action-group">
+              <span>{statistics.likesCount}</span>
+              <button
+                className={`like-button ${interactions.hasLiked ? "liked" : ""}`}
+                disabled={interactions.canLike === false}
+                aria-label="Like article"
+              >
+                {interactions.hasLiked ? <AiFillLike /> : <AiOutlineLike />}
+              </button>
+            </div>
+            <div className="action-group">
+              <button
+                className={`bookmark-button ${interactions.hasBookmarked ? "bookmarked" : ""}`}
+                disabled={interactions.canBookmark === false}
+                aria-label="Bookmark article"
+              >
+                {interactions.hasBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </article>
+  );
+}

@@ -1,146 +1,240 @@
+/* Base Article Card */
 .article-card {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5em;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
+    background: #ffffff;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
+    width: 650px;
+    margin: 1.2em auto;
+    padding: 1.2rem;
+    border: 1px solid #e0e0e0;
 }
 
 .article-card:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.thumbnail {
-    width: 100%;
-    height: 150px;
-    overflow: hidden;
+/* Header */
+.article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.author-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #f9f9f9;
+    gap: 0.8em;
 }
 
-.thumbnail img {
+.avatar-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.content {
-    padding: 1rem;
+.credentials-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
-.meta {
+.credentials-wrapper a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.credentials-wrapper a:hover {
+    color: #007bff;
+}
+
+/* Meta Container */
+.meta-container {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Main Content */
+.article-content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 1rem 0;
+}
+
+/* Main Content */
+.article-main-wrapper {
+    flex: 1;
+}
+
+.article-main-wrapper a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.article-main-wrapper a:hover {
+    color: #007bff;
+}
+
+.article-main-wrapper h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.article-main-wrapper p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    text-indent: 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Thumbnail */
+.thumbnail-wrapper {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.thumbnail-container {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Footer */
+.article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Footer Meta */
+.footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Interaction Panel */
+.action-container {
+    display: flex;
+    align-items: center;
     gap: 1rem;
+}
+
+.action-wrapper {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     font-size: 0.9rem;
     color: #555;
 }
 
-.author {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.action-group button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #888;
+    transition: color 0.2s ease;
 }
 
-.author-link {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
-
-.author-link:hover {
-    text-decoration: underline;
-}
-
-.reading-time,
-.paywalled,
-.created-at,
-.updated-at {
-    font-size: 0.8rem;
-    color: #777;
-}
-
-.title {
-    font-size: 1.5rem;
-    margin: 0.5rem 0;
-    font-weight: bold;
+.action-group button:hover {
     color: #333;
 }
 
-.title a {
-    text-decoration: none;
-    color: inherit;
+/* Like & Bookmark Buttons */
+.like-button.liked {
+    color: red;
 }
 
-.title a:hover {
-    text-decoration: underline;
+.bookmark-button.bookmarked {
+    color: gold;
 }
 
-.hook {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    text-indent: 2em;
-    text-align: justify;
-    color: #555;
-    line-height: 1.6;
-}
-
-
-.hook a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.hook a:hover {
-    text-decoration: underline;
-}
-
-.segmentation {
-    font-size: 0.8rem;
-    display: flex;
-
-}
-
-.badge {
-    display: inline-block;
-    padding: 0.3em 0.6em;
-    margin: 0.2em;
-    font-size: 0.85rem;
-    border-radius: 12px;
-    text-transform: capitalize;
-    font-weight: bold;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.category-badge {
-    background-color: #4335A7;
-
-}
-
-.topic-badge {
-    background-color: #80C4E9;
-
-}
-
-.tag-badge {
-    background-color: #FF7F3E;
-}
-
-.badge:hover {
-    background-color: #B59F78;
-    transform: translateY(-1px);
-}
-
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .hook {
-        text-indent: 1em;
+    .article-card {
+        max-width: 100%;
+        margin: 0.5em;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .thumbnail-wrapper {
+        flex: unset;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .article-footer {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}
+
+/* Ultra-Narrow Screens (320px) */
+@media (max-width: 360px) {
+    .meta-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .action-group span {
+        font-size: 0.8rem;
     }
 }

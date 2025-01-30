@@ -1,9 +1,5 @@
-import "./article-card.styles.css";
+import "./article-card.css";
 import { Link } from "react-router-dom";
-import { IArticleAggregatedPreview } from "../../../types/entries/article";
-import { FaBookmark, FaLock, FaRegBookmark } from "react-icons/fa6";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { FaRegCommentAlt } from "react-icons/fa";
 import {
   getAuthorPath,
   getAvatarPath,
@@ -11,11 +7,11 @@ import {
   getThumbnailPath,
 } from "../../../utils/path";
 import { checkIsUpdated, getPublishedDate, parseReadingTimeDuration } from "../../../utils/time";
+import { ArticlePreview } from "../../../types/entities/article";
+import { FaRegCommentAlt } from "react-icons/fa";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { FaBookmark, FaLock, FaRegBookmark } from "react-icons/fa6";
 
-// TODO: Fix interface length
-type ArticlePreview = IArticleAggregatedPreview;
-
-// Article Card Component:
 export default function ArticleCard({ article }: { article: ArticlePreview }) {
   const { author, statistics, interactions } = article;
 
@@ -36,9 +32,10 @@ export default function ArticleCard({ article }: { article: ArticlePreview }) {
         <div className="author-wrapper">
           <div className="avatar-container">
             <Link to={authorPath}>
-              <img src={avatarPath} alt={`${author.username}'s profile pic`} />
+              <img src={avatarPath} alt={`${author.username}'s profile picture`} />
             </Link>
           </div>
+
           <div className="credentials-wrapper">
             <Link to={authorPath}>
               <span className="username">@{author.username}</span>
@@ -70,6 +67,7 @@ export default function ArticleCard({ article }: { article: ArticlePreview }) {
               <p>{article.summary}</p>
             </Link>
           </main>
+
           <aside className="thumbnail-wrapper">
             <div className="thumbnail-container">
               <Link to={articlePath}>
@@ -95,6 +93,7 @@ export default function ArticleCard({ article }: { article: ArticlePreview }) {
               <span>{statistics.commentsCount}</span>
               <FaRegCommentAlt aria-hidden="true" />
             </div>
+
             <div className="action-group">
               <span>{statistics.likesCount}</span>
               <button
@@ -105,6 +104,7 @@ export default function ArticleCard({ article }: { article: ArticlePreview }) {
                 {interactions.hasLiked ? <AiFillLike /> : <AiOutlineLike />}
               </button>
             </div>
+
             <div className="action-group">
               <button
                 className={`bookmark-button ${interactions.hasBookmarked ? "bookmarked" : ""}`}

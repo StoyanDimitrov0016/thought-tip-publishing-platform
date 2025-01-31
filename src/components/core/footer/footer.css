@@ -1,0 +1,7 @@
+.site-footer {
+    background-color: white;
+    color: var(--text-primary);
+    padding: 0.8em;
+    text-align: center;
+    border-top: 1px var(--background-surface-dark) solid;
+}

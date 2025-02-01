@@ -1,0 +1,145 @@
+/* Main Header */
+.site-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header Container (Flexbox Layout) */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 1rem;
+}
+
+/* GENERAL HEADER GROUP STYLES */
+.header-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Burger Menu (Mobile Sidebar Toggle) */
+.header-burger-menu-container {
+    display: none;
+}
+
+.burger-menu {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: color 0.2s ease-in-out;
+}
+
+.burger-menu:hover {
+    color: var(--primary-color);
+}
+
+/* Logo */
+.header-logo-container a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+/* Search Bar */
+.header-search-container {
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.header-search-container form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--bg-muted);
+    border-radius: 2em;
+}
+
+.header-search-container input {
+    width: 200px;
+}
+
+.header-search-container form button {
+    color: var(--text-inverted);
+    padding: 0%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: none;
+    justify-content: center;
+    padding: 0.3rem;
+}
+
+.header-search-container button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--text-inverted);
+}
+
+.header-search-container form button:hover {
+    background: var(--accent-hover);
+}
+
+/* Navigation */
+.header-navigation-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-list {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-nav-item {
+    list-style: none;
+}
+
+.header-nav-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Avatar/Profile Picture */
+.header-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--bg-muted);
+    overflow: hidden;
+}
+
+.header-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .header-burger-menu-container {
+        display: flex;
+    }
+
+    /* Make sure if it isn't visible even if the conditional render is removed*/
+    .header-search-container {
+        display: none;
+    }
+}

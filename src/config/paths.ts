@@ -1,4 +1,3 @@
-// Note: these are internal paths for react router dom, not external links
 export const PATHS = {
   HOME: "",
 
@@ -26,7 +25,7 @@ export const PATHS = {
   MY_PROFILE_MY_BOOKMARKS: "my-bookmarks",
   MY_PROFILE_MY_DETAILS: "details",
 
-  // For future implementa:
+  // For future implementation:
   ACCOUNT_SETTINGS: "/my-profile/account-settings",
   NOTIFICATIONS: "/my-profile/notifications",
-};
+} as const;

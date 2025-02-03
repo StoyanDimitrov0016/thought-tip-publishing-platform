@@ -2,22 +2,21 @@ import { BaseEntity } from "../common";
 import { Author } from "./user";
 import { Category, Topic, Tag } from "./segmentation";
 
-// ENTITIES
 export interface ArticlePreview extends BaseEntity {
   title: string;
   slug: string;
   thumbnail: string;
   summary: string;
   content: null;
+  charge: number;
+  readingTime: number;
+  discussion: boolean;
   author: Author;
   category: Category;
   topic: Topic;
   tag: Tag;
-  charge: number;
-  readingTime: number;
-  discussion: boolean;
-  interactions: ArticleInteractions;
-  statistics: ArticleStatistics;
+  actions: ArticleActions;
+  stats: ArticleStats;
 }
 
 export interface Article extends Omit<ArticlePreview, "content"> {
@@ -25,7 +24,7 @@ export interface Article extends Omit<ArticlePreview, "content"> {
 }
 
 // COMPLEMENTARY AGGREGATED PROPERTIES
-export interface ArticleInteractions {
+export interface ArticleActions {
   canEdit: boolean;
   canDelete: boolean;
   canBookmark: boolean;
@@ -34,7 +33,7 @@ export interface ArticleInteractions {
   hasLiked: boolean;
 }
 
-export interface ArticleStatistics {
+export interface ArticleStats {
   likesCount: number;
   commentsCount: number;
 }

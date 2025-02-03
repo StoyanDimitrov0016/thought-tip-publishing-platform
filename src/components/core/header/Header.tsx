@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import HeaderNavigation from "./HeaderNavigation";
 import SearchBar from "./SearchBar";
+import { APP_NAME } from "../../../config/constants";
+import { PATHS } from "../../../config/paths";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 
@@ -9,9 +11,6 @@ interface HeaderProps {
   toggleHandler: () => void;
   isMobile: boolean;
 }
-
-const homePath = "/";
-const appName = "Thought Tip";
 
 export default function Header({ isOpen, toggleHandler, isMobile }: HeaderProps) {
   return (
@@ -41,8 +40,8 @@ export default function Header({ isOpen, toggleHandler, isMobile }: HeaderProps)
           )}
         </div>
         <div className="header-group header-logo-container">
-          <Link to={homePath}>
-            <span>{appName}</span>
+          <Link to={PATHS.HOME}>
+            <span>{APP_NAME}</span>
           </Link>
         </div>
 

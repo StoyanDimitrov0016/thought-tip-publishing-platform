@@ -1,14 +1,8 @@
-import { useAuthContext } from "../../../contexts/authContext";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../../contexts/authContext";
+import { PATHS } from "../../../config/paths";
 import { RxAvatar } from "react-icons/rx";
 import { FaPencilAlt } from "react-icons/fa";
-
-const paths = {
-  createArticle: "/create-article",
-  myProfile: "/my-profile",
-  login: "/auth/login",
-  register: "/auth/register",
-};
 
 export default function HeaderNavigation() {
   const { user, isLoading, isAuth } = useAuthContext();
@@ -21,13 +15,13 @@ export default function HeaderNavigation() {
         {isAuth ? (
           <>
             <li className="header-nav-item">
-              <Link to={paths.createArticle} className="header-nav-link">
+              <Link to={PATHS.CREATE_ARTICLE} className="header-nav-link">
                 <FaPencilAlt />
                 <span>Create</span>
               </Link>
             </li>
             <li className="header-nav-item">
-              <Link to={paths.myProfile} className="header-nav-link header-profile">
+              <Link to={PATHS.MY_PROFILE} className="header-nav-link header-profile">
                 <div className="header-avatar">
                   {user?.avatar ? (
                     <img src={user?.avatar} alt="User Avatar" className="avatar" />
@@ -42,12 +36,12 @@ export default function HeaderNavigation() {
         ) : (
           <>
             <li className="header-nav-item">
-              <Link to={paths.login} className="header-nav-link">
+              <Link to={PATHS.LOGIN} className="header-nav-link">
                 Login
               </Link>
             </li>
             <li className="header-nav-item">
-              <Link to={paths.register} className="header-nav-link">
+              <Link to={PATHS.REGISTER} className="header-nav-link">
                 Register
               </Link>
             </li>

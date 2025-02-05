@@ -1,29 +1,22 @@
 import apiClient from "../axiosInstance";
+import { API_ENDPOINTS } from "../../config/paths";
 import { RegisterData, LoginData, User } from "../../types/collections/user";
 
-// TODO: extract to a centralized place
-const urls = {
-  register: "/auth/register",
-  login: "/auth/login",
-  logout: "/auth/logout",
-  me: "/auth/me",
-};
-
 export const register = async (registerData: RegisterData): Promise<User> => {
-  const { data: user } = await apiClient.post(urls.register, registerData);
+  const { data: user } = await apiClient.post(API_ENDPOINTS.REGISTER, registerData);
   return user;
 };
 
 export const login = async (loginData: LoginData): Promise<User> => {
-  const { data: user } = await apiClient.post(urls.login, loginData);
+  const { data: user } = await apiClient.post(API_ENDPOINTS.LOGIN, loginData);
   return user;
 };
 
 export const logout = async (): Promise<void> => {
-  await apiClient.post(urls.logout);
+  await apiClient.post(API_ENDPOINTS.LOGOUT);
 };
 
 export const initializeMe = async (): Promise<User> => {
-  const { data: user } = await apiClient.get(urls.me);
+  const { data: user } = await apiClient.get(API_ENDPOINTS.ME);
   return user;
 };

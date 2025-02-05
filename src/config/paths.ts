@@ -29,3 +29,26 @@ export const PATHS = {
   ACCOUNT_SETTINGS: "/my-profile/account-settings",
   NOTIFICATIONS: "/my-profile/notifications",
 } as const;
+
+export const REDIRECT_PATHS = {
+  // Auth redirect paths:
+  AFTER_LOGIN: PATHS.HOME,
+  AFTER_REGISTER: PATHS.HOME,
+  AFTER_LOGOUT: PATHS.HOME,
+
+  // Guard redirect paths:
+  GUEST_GUARD_REDIRECT: PATHS.HOME,
+  AUTH_GUARD_REDIRECT: PATHS.LOGIN,
+
+  // Specific resource paths:
+  ARTICLE_PAGE: (articleId: string) => `/articles/${articleId}`,
+  AUTHOR_PAGE: (authorId: string) => `/authors/${authorId}`,
+} as const;
+
+export const API_ENDPOINTS = {
+  // Auth API paths:
+  LOGIN: "/auth/login",
+  REGISTER: "/auth/register",
+  LOGOUT: "/auth/logout",
+  ME: "/auth/me",
+} as const;

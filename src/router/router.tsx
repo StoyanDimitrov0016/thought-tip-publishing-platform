@@ -1,19 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { ROUTES } from "./routes";
+import MainLayout from "../layouts/MainLayout";
+import ProfileLayout from "../layouts/ProfileLayout";
 
-import MainLayout from "../layouts/main-layout/MainLayout";
-import HomePage from "../pages/home-page/HomePage";
-import ArticlePage from "../pages/article-page/ArticlePage";
-import AuthorPage from "../pages/author-page/AuthorPage";
-import CreateArticlePage from "../pages/create-article-page/CreateArticlePage";
-import UserProfilePage from "../pages/user-profile-page/UserProfilePage";
-import LoginPage from "../pages/login-page/LoginPage";
-import RegisterPage from "../pages/register-page/RegisterPage";
+import AuthGuard from "../guards/AuthGuard";
+import GuestGuard from "../guards/GuestGuard";
+
+import HomePage from "../pages/HomePage";
+import ArticlePage from "../pages/article/ArticlePage";
+import AuthorPage from "../pages/author/AuthorPage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import CreateArticlePage from "../pages/CreateArticlePage";
+
+import MyArticles from "../pages/profile/MyArticles";
+import MyBookmarks from "../pages/profile/MyBookmarks";
+import MyDetails from "../pages/profile/MyDetails";
+
+import { PATHS } from "../config/paths";
 
 const router = createBrowserRouter([
   {
-    path: ROUTES.HOME,
+    path: PATHS.HOME,
     element: <MainLayout />,
     children: [
       {
@@ -21,35 +29,48 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: ROUTES.ARTICLE,
+        path: PATHS.ARTICLE,
         element: <ArticlePage />,
       },
       {
-        path: ROUTES.AUTHOR,
+        path: PATHS.AUTHOR,
         element: <AuthorPage />,
       },
       {
-        path: ROUTES.LOGIN,
-        element: <LoginPage />,
+        element: <GuestGuard />,
+        children: [
+          { path: PATHS.LOGIN, element: <LoginPage /> },
+          { path: PATHS.REGISTER, element: <RegisterPage /> },
+        ],
       },
       {
-        path: ROUTES.REGISTER,
-        element: <RegisterPage />,
+        element: <AuthGuard />,
+        children: [
+          { path: PATHS.CREATE_ARTICLE, element: <CreateArticlePage /> },
+          {
+            path: PATHS.MY_PROFILE,
+            element: <ProfileLayout />,
+            children: [
+              { index: true, element: <Navigate to={PATHS.MY_PROFILE_MY_ARTICLES} replace /> },
+              {
+                path: PATHS.MY_PROFILE_MY_ARTICLES,
+                element: <MyArticles />,
+              },
+              {
+                path: PATHS.MY_PROFILE_MY_BOOKMARKS,
+                element: <MyBookmarks />,
+              },
+              {
+                path: PATHS.MY_PROFILE_MY_DETAILS,
+                element: <MyDetails />,
+              },
+            ],
+          },
+        ],
       },
-
       {
-        path: ROUTES.CREATE_ARTICLE,
-        element: <CreateArticlePage />,
-      },
-      {
-        path: ROUTES.USER_PROFILE,
-        element: <UserProfilePage />,
-        children: [],
-      },
-      {
-        // Fallback for logout-out users trying to access restricted routes
         path: "*",
-        element: <span>Redirect</span>,
+        element: <HomePage />,
       },
     ],
   },

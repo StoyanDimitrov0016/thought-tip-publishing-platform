@@ -1,100 +1,36 @@
+/* BRAND COLORS */
 :root {
-    --background-primary: #ffffff;
-    --background-secondary: #f4f4f4;
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-hover: #545b62;
+    --accent-color: #ff5722;
+    --accent-hover: #e64a19;
 
-    --background-surface: #ffffff;
-    --background-surface-light: #f9f9f9;
-    --background-surface-dark: #e0e0e0;
+    /* BACKGROUND COLORS */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-muted: #e9ecef;
 
-    --background-accent: #007bff;
-    --background-accent-hover: #0056b3;
-    --background-accent-muted: #99ccff;
+    /* TEXT COLORS */
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted: #6c757d;
+    --text-inverted: #ffffff;
 
-    --background-neutral-light: #f7f7f7;
-    --background-neutral-dark: #333333;
+    /* BORDERS & LINES */
+    --border-light: #dee2e6;
+    --border-dark: #adb5bd;
 
-    --background-interactive: #007bff;
-    --background-interactive-hover: #0056b3;
-    --background-interactive-active: #003f7f;
+    /* FEEDBACK & STATUS COLORS */
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
 
-    --background-success: #dff0d8;
-    --background-warning: #eed141;
-    --background-error: #f2dede;
-
-    --text-primary: #333333;
-    --text-secondary: #555555;
-    --text-accent: #007bff;
-    --text-inverse: #ffffff;
-    --text-muted: #999999;
-
-    --icon-color: var(--text-primary);
-}
-
-
-body {
-    background-color: var(--background-primary);
-    color: var(--text-primary);
-}
-
-.header {
-    background-color: var(--background-neutral-dark);
-    color: var(--background-primary);
-    padding: 1em;
-}
-
-.card {
-    background-color: var(--background-surface);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 1.5em;
-    border-radius: 0.5em;
-}
-
-.button-primary {
-    background-color: var(--background-interactive);
-    color: var(--background-primary);
-    padding: 0.75em 1.5em;
-    border: none;
-    border-radius: 0.5em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.button-primary:hover {
-    background-color: var(--background-interactive-hover);
-}
-
-.button-primary:active {
-    background-color: var(--background-interactive-active);
-}
-
-.alert-success {
-    background-color: var(--background-success);
-    padding: 1em;
-    border-radius: 0.5em;
-}
-
-.alert-warning {
-    background-color: var(--background-warning);
-    padding: 1em;
-    border-radius: 0.5em;
-}
-
-.alert-error {
-    background-color: var(--background-error);
-    padding: 1em;
-    border-radius: 0.5em;
-}
-
-input,
-textarea,
-select {
-    color: var(--text-primary);
-    background-color: var(--background-surface);
-    border: 1px solid #ccc;
-    padding: 0.5em;
-    border-radius: 0.25em;
-}
-
-svg {
-    fill: var(--icon-color);
+    /* BUTTONS & INTERACTIVE ELEMENTS */
+    --btn-primary-bg: var(--primary-color);
+    --btn-primary-text: #ffffff;
+    --btn-secondary-bg: var(--secondary-color);
+    --btn-secondary-text: #ffffff;
 }

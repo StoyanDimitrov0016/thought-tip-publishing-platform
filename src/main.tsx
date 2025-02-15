@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import "./styles/reset.css";
 import "./styles/typography.css";
@@ -23,7 +24,7 @@ import "./styles/pages/register-login-pages.css";
 import "./styles/pages/create-article-page.css";
 
 import { SegmentationProvider } from "./contexts/segmentation.tsx";
-import { AuthProvider } from "./contexts/authContext.tsx";
+import { AuthProvider } from "./contexts/auth-context.tsx";
 
 import router from "./router/router.tsx";
 
@@ -38,6 +39,7 @@ createRoot(document.getElementById("root")!).render(
           <RouterProvider router={router} />
         </SegmentationProvider>
       </AuthProvider>
+      <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   </StrictMode>
 );

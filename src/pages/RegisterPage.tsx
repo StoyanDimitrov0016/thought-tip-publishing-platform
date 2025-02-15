@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/authContext";
+import { useAuthContext } from "../contexts/auth-context";
 import { RegisterData } from "../types/entities/form";
 import useForm from "../hooks/useForm";
 import { PATHS, REDIRECT_PATHS } from "../config/paths";
 
 export default function RegisterPage({}) {
   const navigate = useNavigate();
-  const { registerHandler, isLoading, error } = useAuthContext();
+  const { registerHandler } = useAuthContext();
 
-  const { values, changeHandler, submitHandler } = useForm<RegisterData>({
+  const { values, changeHandler, submitHandler, isSubmitting } = useForm<RegisterData>({
     initialValues: {
       email: "",
       username: "",
@@ -16,8 +16,12 @@ export default function RegisterPage({}) {
       repass: "",
     },
     onSubmit: async (values: RegisterData) => {
-      await registerHandler(values);
-      if (!error) navigate(REDIRECT_PATHS.AFTER_LOGIN);
+      try {
+        await registerHandler(values);
+        navigate(REDIRECT_PATHS.AFTER_LOGIN);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -70,14 +74,9 @@ export default function RegisterPage({}) {
               className="input-field"
             />
           </div>
-          {error && (
-            <div className="auth-error">
-              <span>{error.message}</span>
-            </div>
-          )}
           <div className="form-footer">
             <button type="submit" className="btn-primary">
-              {isLoading ? "Registering..." : "Register"}
+              {isSubmitting ? "Registering..." : "Register"}
             </button>
           </div>
         </form>

@@ -2,13 +2,13 @@ import apiClient from "../axiosInstance";
 import { API_ENDPOINTS } from "../../config/paths";
 import { RegisterData, LoginData, User } from "../../types/collections/user";
 
-export const register = async (registerData: RegisterData): Promise<User> => {
-  const { data: user } = await apiClient.post(API_ENDPOINTS.REGISTER, registerData);
+export const register = async (data: RegisterData): Promise<User> => {
+  const { data: user } = await apiClient.post(API_ENDPOINTS.REGISTER, data);
   return user;
 };
 
-export const login = async (loginData: LoginData): Promise<User> => {
-  const { data: user } = await apiClient.post(API_ENDPOINTS.LOGIN, loginData);
+export const login = async (data: LoginData): Promise<User> => {
+  const { data: user } = await apiClient.post(API_ENDPOINTS.LOGIN, data);
   return user;
 };
 

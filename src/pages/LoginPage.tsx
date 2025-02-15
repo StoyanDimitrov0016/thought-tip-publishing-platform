@@ -1,18 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/authContext";
+import { useAuthContext } from "../contexts/auth-context";
 import useForm from "../hooks/useForm";
 import { PATHS, REDIRECT_PATHS } from "../config/paths";
 import { LoginData } from "../types/entities/form";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { loginHandler, isLoading, error } = useAuthContext();
+  const { loginHandler } = useAuthContext();
 
-  const { values, changeHandler, submitHandler } = useForm<LoginData>({
+  const { values, changeHandler, submitHandler, isSubmitting } = useForm<LoginData>({
     initialValues: { email: "", password: "" },
     onSubmit: async (values: LoginData) => {
-      await loginHandler(values);
-      if (!error) navigate(REDIRECT_PATHS.AFTER_LOGIN);
+      try {
+        console.log("in on submit login page:", values);
+        await loginHandler(values);
+        console.log("in on submit login page before navigation kicks in:");
+        navigate(REDIRECT_PATHS.AFTER_LOGIN);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -43,14 +49,9 @@ export default function LoginPage() {
               className="input-field"
             />
           </div>
-          {error && (
-            <div className="auth-error">
-              <span>{error.message}</span>
-            </div>
-          )}
           <div className="form-footer">
             <button type="submit" className="btn-primary">
-              {isLoading ? "Logging in..." : "Login"}
+              {isSubmitting ? "Logging in..." : "Login"}
             </button>
           </div>
         </form>

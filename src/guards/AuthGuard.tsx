@@ -1,12 +1,17 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuthContext } from "../contexts/authContext";
+import { useAuthContext } from "../contexts/auth-context";
 import { REDIRECT_PATHS } from "../config/paths";
 
 export default function AuthGuard() {
-  const { isAuth, isLoading } = useAuthContext();
+  const { user, isFetchingUser } = useAuthContext();
 
-  if (isLoading) return null;
-  if (!isAuth) return <Navigate to={REDIRECT_PATHS.AUTH_GUARD_REDIRECT} replace />;
+  if (isFetchingUser) {
+    return null;
+  }
+
+  if (!user) {
+    return <Navigate to={REDIRECT_PATHS.AUTH_GUARD_REDIRECT} replace />;
+  }
 
   return <Outlet />;
 }

@@ -1,5 +1,5 @@
 export const PATHS = {
-  HOME: "",
+  HOME: "/",
 
   // Author paths:
   AUTHOR: `/authors/:authorId`,

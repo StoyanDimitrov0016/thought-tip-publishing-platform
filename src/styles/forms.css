@@ -1,0 +1,48 @@
+form input,
+textarea,
+select {
+    width: 50%;
+    padding: 0.75em;
+    border: 1px solid var(--background-surface-dark);
+    border-radius: 0.25em;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--background-accent);
+    outline: none;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.redirect-container {
+    margin-top: 2em;
+}
+
+.redirect-container p {
+    color: var(--text-muted);
+}
+
+.redirect-container a {
+    color: var(--text-primary);
+}
+
+.redirect-container a:hover {
+    text-decoration: underline;
+    color: var(--text-accent);
+}

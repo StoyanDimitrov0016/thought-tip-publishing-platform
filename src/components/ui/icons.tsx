@@ -1,18 +1,19 @@
 import { IconBaseProps } from "react-icons";
-import { AiFillHome } from "react-icons/ai";
 import {
   FaBookmark,
-  FaEdit,
-  FaHeart,
   FaRegBookmark,
-  FaRegCommentAlt,
   FaRegHeart,
-  FaTrash,
-  FaUserMinus,
+  FaHeart,
   FaUserPlus,
+  FaUserMinus,
+  FaEdit,
+  FaTrash,
+  FaRegCommentAlt,
 } from "react-icons/fa";
-import { LuSendHorizontal } from "react-icons/lu";
 import { MdIosShare } from "react-icons/md";
+import { LuSendHorizontal } from "react-icons/lu";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import { AiFillHome } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 
 // Bookmark Icons
@@ -30,6 +31,7 @@ export const RemoveFollowIcon = (props: IconBaseProps) => <FaUserMinus {...props
 // Action Icons
 export const PublishIcon = (props: IconBaseProps) => <MdIosShare {...props} />;
 export const SendIcon = (props: IconBaseProps) => <LuSendHorizontal {...props} />;
+export const SearchIcon = (props: IconBaseProps) => <HiMiniMagnifyingGlass {...props} />;
 export const EditIcon = (props: IconBaseProps) => <FaEdit {...props} />;
 export const DeleteIcon = (props: IconBaseProps) => <FaTrash {...props} />;
 

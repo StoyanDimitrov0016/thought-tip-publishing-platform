@@ -7,18 +7,21 @@ export const getArticles = async (url: string): Promise<ArticlePreview[]> => {
   return articles;
 };
 
-export const getArticle = async (articleId: string): Promise<Article> => {
-  const { data: article } = await apiClient.get(`/articles/${articleId}`);
+export const getArticle = async (id: string): Promise<Article> => {
+  const { data: article } = await apiClient.get(`/articles/${id}`);
   return article;
 };
 
-export const createArticle = async (createData: ArticleCreateData) => {
-  const { data: article } = await apiClient.post("/articles", createData);
+export const createArticle = async (data: ArticleCreateData): Promise<Article> => {
+  const { data: article } = await apiClient.post<Article>("/articles", data);
   return article;
 };
 
-export const updateArticle = async () => {};
+export const updateArticle = async (id: string, data: ArticleCreateData): Promise<Article> => {
+  const { data: article } = await apiClient.put<Article>(`/articles/${id}`, data);
+  return article;
+};
 
-export const removeArticle = async (articleId: string) => {
-  await apiClient.delete(`/articles/${articleId}`);
+export const removeArticle = async (id: string) => {
+  await apiClient.delete(`/articles/${id}`);
 };

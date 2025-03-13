@@ -1,0 +1,61 @@
+/* Base Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Form Group (Wrapper for Input + Label) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Legend */
+.legend {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Labels */
+.label {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Inputs & Textareas (Base Styles) */
+.input,
+.textarea,
+.select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s ease-in-out;
+}
+
+/* Input & Textarea Focus */
+.input:focus,
+.textarea:focus,
+.select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Disabled State */
+.input:disabled,
+.textarea:disabled,
+.select:disabled {
+    background: #f0f0f0;
+    cursor: not-allowed;
+}
+
+/* Select (Dropdown) */
+.select {
+    appearance: none;
+    background: white;
+}

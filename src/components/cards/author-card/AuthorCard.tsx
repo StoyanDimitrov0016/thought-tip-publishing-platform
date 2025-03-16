@@ -1,52 +1,16 @@
 import { Link } from "react-router-dom";
 import "./author-card.styles.css";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { followAuthor, unfollowAuthor } from "../../../api/author";
+import { Author } from "../../../types/entities/user";
+import FollowButton from "../../action-buttons/follow-button";
 
 interface AuthorCardProps {
-  id: string;
-  username: string;
-  verified: boolean;
-  firstName: string | null;
-  lastName: string | null;
-  profilePicture: string | null;
-  createdAt: string;
-  isFollowed: boolean;
+  author: Author;
+  hasFollowed: boolean;
+  canFollow: boolean;
 }
 
-import { useState } from "react";
-
-const AuthorCard = ({
-  id,
-  username,
-  verified,
-  firstName,
-  lastName,
-  profilePicture,
-  createdAt,
-  isFollowed: initialIsFollowed,
-}: AuthorCardProps) => {
-  const [isFollowed, setIsFollowed] = useState<boolean>(initialIsFollowed);
-
-  const handleFollow = async () => {
-    try {
-      await followAuthor(id);
-      setIsFollowed(true);
-      console.log(`Followed ${username} successfully`);
-    } catch (error) {
-      console.error(`Failed to follow ${username}:`, error);
-    }
-  };
-
-  const handleUnfollow = async () => {
-    try {
-      await unfollowAuthor(id);
-      setIsFollowed(false);
-      console.log(`Unfollowed ${username} successfully`);
-    } catch (error) {
-      console.error(`Failed to unfollow ${username}:`, error);
-    }
-  };
+const AuthorCard = ({ author, hasFollowed, canFollow }: AuthorCardProps) => {
+  const { id, avatar, firstName, lastName, username, createdAt } = author;
 
   const joinedDate = new Date(createdAt).toLocaleDateString();
   const defaultProfilePicture =
@@ -55,9 +19,9 @@ const AuthorCard = ({
   return (
     <section className="author-card" aria-labelledby={`author-${username}`}>
       <div className="picture">
-        <Link to={`/authors/@${username}`} aria-label={`Visit ${username}'s profile`}>
+        <Link to={`/authors/${id}`} aria-label={`Visit ${username}'s profile`}>
           <img
-            src={profilePicture || defaultProfilePicture}
+            src={avatar || defaultProfilePicture}
             alt={`${firstName || lastName || username}'s profile picture`}
             className="profile-picture"
           />
@@ -66,7 +30,7 @@ const AuthorCard = ({
 
       <div className="info">
         <Link
-          to={`/authors/@${username}-${id}`}
+          to={`/authors/${id}`}
           className="author-link"
           aria-label={`Visit ${
             firstName && lastName ? `${firstName} ${lastName}` : `@${username}`
@@ -81,35 +45,15 @@ const AuthorCard = ({
             <h2 className="author-username-large">@{username}</h2>
           )}
         </Link>
-        <p className="author-meta">
-          Status:
-          {verified && (
-            <span className="badge verified-badge">
-              <RiVerifiedBadgeFill />
-            </span>
-          )}
-        </p>
         <p className="author-joined">Thinker since {joinedDate}</p>
       </div>
 
       <div className="action">
-        {isFollowed ? (
-          <button
-            className="button unfollow-button"
-            aria-label={`Unfollow ${username}`}
-            onClick={handleUnfollow}
-          >
-            Unfollow
-          </button>
-        ) : (
-          <button
-            className="button follow-button"
-            aria-label={`Follow ${username}`}
-            onClick={handleFollow}
-          >
-            Follow
-          </button>
-        )}
+        <FollowButton
+          authorId={author.id}
+          canFollow={author.actions.canFollow}
+          hasFollowed={author.actions.hasFollowed}
+        />
       </div>
     </section>
   );
